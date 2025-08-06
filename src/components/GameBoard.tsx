@@ -1,0 +1,56 @@
+import React from 'react';
+import { useGameState } from '../hooks/useGameState';
+import LetterCard from './LetterCard';
+import ScoreDisplay from './ScoreDisplay';
+
+const GameBoard: React.FC = () => {
+    const { 
+        currentLetter, 
+        images, 
+        score, 
+        handleSelection, 
+        showTrophy,
+        correctlySelected 
+    } = useGameState();
+
+    if (showTrophy) {
+        return (
+            <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-yellow-300 to-yellow-500 p-4">
+                <div className="text-6xl mb-4">🏆</div>
+                <h1 className="text-3xl font-bold text-center mb-4">Glückwunsch!</h1>
+                <p className="text-lg text-center">Du hast 5 Buchstaben geschafft!</p>
+            </div>
+        );
+    }
+
+    return (
+        <div className="flex flex-col min-h-screen bg-blue-50 p-4 pt-28">
+            {/* Letter Display */}
+            <div className="text-center mb-6">
+                <h1 className="text-6xl font-bold mb-2 text-blue-800">
+                    {currentLetter?.toUpperCase()}
+                </h1>
+                <h2 className="text-4xl font-bold text-blue-600">
+                    {currentLetter?.toLowerCase()}
+                </h2>
+            </div>
+
+            {/* Score Display */}
+            <ScoreDisplay score={score} />
+
+            {/* Images Grid */}
+            <div className="flex-1 grid grid-cols-3 gap-3 max-w-md mx-auto w-full">
+                {images.map((image, index) => (
+                    <LetterCard 
+                        key={`${image.name}-${index}`}
+                        image={image} 
+                        onClick={() => handleSelection(image)}
+                        isSelected={correctlySelected.has(image.name)}
+                    />
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default GameBoard;
