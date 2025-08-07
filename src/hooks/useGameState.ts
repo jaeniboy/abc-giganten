@@ -63,11 +63,7 @@ export const useGameState = () => {
             setScore(currentScore => {
                 if ((currentScore) % 5 === 0) {
                     setShowTrophy(true);
-                    nextRoundTimeoutRef.current = setTimeout(() => {
-                        setShowTrophy(false);
-                        initializeGame();
-                        nextRoundTimeoutRef.current = null;
-                    }, 3000);
+                    // Trophy screen will stay visible until user clicks "Nochmal spielen"
                 } else {
                     nextRoundTimeoutRef.current = setTimeout(() => {
                         initializeGame();
@@ -93,6 +89,24 @@ export const useGameState = () => {
         }
     }, [initializeGame]);
 
+    // Reset game (score and start new round)
+    const resetGame = useCallback(() => {
+        // Clear any pending timeouts
+        if (nextRoundTimeoutRef.current) {
+            clearTimeout(nextRoundTimeoutRef.current);
+            nextRoundTimeoutRef.current = null;
+        }
+        
+        // Reset all game state
+        setScore(0);
+        setShowTrophy(false);
+        setCorrectlySelected(new Set());
+        roundCompletedRef.current = false;
+        
+        // Start new game
+        initializeGame();
+    }, [initializeGame]);
+
     return {
         currentLetter,
         images,
@@ -100,6 +114,7 @@ export const useGameState = () => {
         correctlySelected,
         showTrophy,
         handleSelection,
-        initializeGame
+        initializeGame,
+        resetGame
     };
 };

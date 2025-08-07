@@ -2,6 +2,7 @@ import React from 'react';
 import { useGameState } from '../hooks/useGameState';
 import LetterCard from './LetterCard';
 import ScoreDisplay from './ScoreDisplay';
+import Button from './Button';
 
 const GameBoard: React.FC = () => {
     const { 
@@ -10,7 +11,8 @@ const GameBoard: React.FC = () => {
         score, 
         handleSelection, 
         showTrophy,
-        correctlySelected 
+        correctlySelected,
+        resetGame
     } = useGameState();
 
     if (showTrophy) {
@@ -18,7 +20,15 @@ const GameBoard: React.FC = () => {
             <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-yellow-300 to-yellow-500 p-4">
                 <div className="text-6xl mb-4">🏆</div>
                 <h1 className="text-3xl font-bold text-center mb-4">Glückwunsch!</h1>
-                <p className="text-lg text-center">Du hast 5 Buchstaben geschafft!</p>
+                <p className="text-lg text-center mb-6">Du hast 5 Buchstaben geschafft!</p>
+                <Button
+                    onClick={resetGame}
+                    variant="primary"
+                    size="large"
+                    className="shadow-lg"
+                >
+                    Nochmal spielen
+                </Button>
             </div>
         );
     }
