@@ -14,25 +14,20 @@ export const useGameState = () => {
     const [score, setScore] = useState<number>(0);
     const [correctlySelected, setCorrectlySelected] = useState<Set<string>>(new Set());
     const [showTrophy, setShowTrophy] = useState<boolean>(false);
-    const [usedLetters, setUsedLetters] = useState<string[]>([]);
 
     // Initialize game with random letter
     const initializeGame = useCallback(() => {
-        const availableLetters = selectedLetters.filter((letter: string) => !usedLetters.includes(letter));
-        
-        if (availableLetters.length === 0) {
-            // Reset if all letters used
-            setUsedLetters([]);
-            setScore(0);
+        if (selectedLetters.length === 0) {
+            // If no letters selected, can't play
             return;
         }
 
-        const randomLetter = availableLetters[Math.floor(Math.random() * availableLetters.length)];
+        const randomLetter = selectedLetters[Math.floor(Math.random() * selectedLetters.length)];
         setCurrentLetter(randomLetter);
         setImages(getRandomImages(randomLetter));
         setCorrectlySelected(new Set());
         roundCompletedRef.current = false; // Reset round completion flag
-    }, [selectedLetters, usedLetters]);
+    }, [selectedLetters]);
 
     // Handle image selection
     const handleSelection = useCallback((image: ImageData) => {
@@ -63,7 +58,6 @@ export const useGameState = () => {
             }
             
             setScore(prevScore => prevScore + 1);
-            setUsedLetters(prev => [...prev, currentLetter]);
             
             // Check for trophy after updating score
             setScore(currentScore => {

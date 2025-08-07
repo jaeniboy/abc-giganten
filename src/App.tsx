@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import NavigationBar from './components/NavigationBar';
 import GameBoard from './components/GameBoard';
+import Settings from './components/Settings';
 
 type AppScreen = 'home' | 'game' | 'settings';
 
@@ -30,22 +31,7 @@ const App: React.FC = () => {
       case 'game':
         return <GameBoard />;
       case 'settings':
-        return (
-          <div className="flex flex-col items-center justify-center bg-gray-50 p-4 flex-1">
-            <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
-              <h2 className="text-2xl font-bold text-center mb-4">Einstellungen</h2>
-              <p className="text-gray-600 text-center">
-                Die Buchstabenauswahl wird hier implementiert.
-              </p>
-              <button 
-                onClick={() => setCurrentScreen('home')}
-                className="mt-4 w-full bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded"
-              >
-                Zurück
-              </button>
-            </div>
-          </div>
-        );
+        return <Settings onBack={() => setCurrentScreen('home')} />;
       default:
         return null;
     }

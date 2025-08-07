@@ -35,7 +35,7 @@ const startsWithLetter = (word: string, letter: string): boolean => {
     const wordLower = word.toLowerCase();
     const letterLower = letter.toLowerCase();
     
-    // Handle compound sounds
+    // Handle compound sounds and special characters
     switch (letterLower) {
         case 'eu':
             return wordLower.startsWith('eu');
@@ -49,6 +49,12 @@ const startsWithLetter = (word: string, letter: string): boolean => {
             return wordLower.startsWith('sch');
         case 'pf':
             return wordLower.startsWith('pf');
+        case 'ä':
+            return wordLower.startsWith('ä');
+        case 'ö':
+            return wordLower.startsWith('ö');
+        case 'ü':
+            return wordLower.startsWith('ü');
         default:
             return wordLower.startsWith(letterLower);
     }

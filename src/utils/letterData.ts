@@ -157,9 +157,22 @@ export const IMAGES: ImageData[] = [
     { name: 'Zitrone', url: 'https://openmoji.org/data/color/svg/1F34B.svg' },
     { name: 'Zug', url: 'https://openmoji.org/data/color/svg/1F685.svg' },
     { name: 'Zebra', url: 'https://openmoji.org/data/color/svg/1F993.svg' },
-    { name: 'Zahnbürste', url: 'https://openmoji.org/data/color/svg/1FAA5.svg' }
+    { name: 'Zahnbürste', url: 'https://openmoji.org/data/color/svg/1FAA5.svg' },
+    
+    // Ä, Ö, Ü Wörter
+    { name: 'Äpfel', url: 'https://openmoji.org/data/color/svg/1F34E.svg' },
+    { name: 'Ärger', url: 'https://openmoji.org/data/color/svg/1F624.svg' },
+    { name: 'Öl', url: 'https://openmoji.org/data/color/svg/1FAD2.svg' },
+    { name: 'Ökopark', url: 'https://openmoji.org/data/color/svg/1F3DE.svg' },
+    { name: 'Über', url: 'https://openmoji.org/data/color/svg/2B06.svg' },
+    { name: 'Übung', url: 'https://openmoji.org/data/color/svg/1F4DD.svg' }
 ];
 
-export const ALL_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ä', 'Ö', 'EU', 'EI', 'ST', 'SP', 'SCH', 'PF'];
+export const ALL_LETTERS = [
+    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 
+    'Ä', 'Ö', 'Ü', 
+    'EU', 'EI', 'ST', 'SP', 'SCH', 'PF'
+];
 
 export const VOWELS = ['A', 'E', 'I', 'O', 'U'];
+// export const VOWELS = ['A', 'E', 'I', 'O', 'U', 'Ä', 'Ö', 'Ü'];
