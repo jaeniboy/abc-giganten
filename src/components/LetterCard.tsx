@@ -23,7 +23,7 @@ const LetterCard: React.FC<LetterCardProps> = ({ image, onClick, isSelected = fa
         <div 
             className={`
                 relative bg-white rounded-lg p-3 cursor-pointer transition-all duration-200 
-                hover:shadow-lg active:scale-95 border-2
+                hover:shadow-lg active:scale-95 border-2 aspect-square
                 ${isSelected ? 'border-green-500 bg-green-50' : 'border-gray-200 hover:border-blue-300'}
                 ${isShaking ? 'animate-pulse' : ''}
             `}
@@ -46,9 +46,9 @@ const LetterCard: React.FC<LetterCardProps> = ({ image, onClick, isSelected = fa
             )}
             
             {/* Image name for accessibility */}
-            <p className="text-xs text-center mt-1 text-gray-600 font-medium">
+            {/* <p className="text-xs text-center mt-1 text-gray-600 font-medium">
                 {image.name}
-            </p>
+            </p> */}
         </div>
     );
 };

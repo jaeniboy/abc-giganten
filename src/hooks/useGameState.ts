@@ -7,6 +7,7 @@ import { VOWELS } from '../utils/letterData';
 export const useGameState = () => {
     // Guard to prevent double next-round
     const nextRoundTimeoutRef = useRef<any>(null);
+    const roundCompletedRef = useRef<boolean>(false);
     const [selectedLetters] = useLocalStorage<string[]>('selectedLetters', VOWELS);
     const [currentLetter, setCurrentLetter] = useState<string>('');
     const [images, setImages] = useState<ImageData[]>([]);
@@ -30,6 +31,7 @@ export const useGameState = () => {
         setCurrentLetter(randomLetter);
         setImages(getRandomImages(randomLetter));
         setCorrectlySelected(new Set());
+        roundCompletedRef.current = false; // Reset round completion flag
     }, [selectedLetters, usedLetters]);
 
     // Handle image selection
@@ -50,29 +52,36 @@ export const useGameState = () => {
         const correctImages = images.filter(img => isCorrectImage(img, currentLetter));
         if (
             correctImages.length > 0 &&
-            correctImages.every(img => correctlySelected.has(img.name))
+            correctImages.every(img => correctlySelected.has(img.name)) &&
+            !roundCompletedRef.current // Only run if round not already completed
         ) {
+            roundCompletedRef.current = true; // Mark round as completed
+            
             // Only run next round logic once per round
             if (nextRoundTimeoutRef.current) {
                 clearTimeout(nextRoundTimeoutRef.current);
             }
-            const newScore = score + 1;
-            setScore(newScore);
+            
+            setScore(prevScore => prevScore + 1);
             setUsedLetters(prev => [...prev, currentLetter]);
-
-            if (newScore % 5 === 0) {
-                setShowTrophy(true);
-                nextRoundTimeoutRef.current = setTimeout(() => {
-                    setShowTrophy(false);
-                    initializeGame();
-                    nextRoundTimeoutRef.current = null;
-                }, 3000);
-            } else {
-                nextRoundTimeoutRef.current = setTimeout(() => {
-                    initializeGame();
-                    nextRoundTimeoutRef.current = null;
-                }, 1000);
-            }
+            
+            // Check for trophy after updating score
+            setScore(currentScore => {
+                if ((currentScore) % 5 === 0) {
+                    setShowTrophy(true);
+                    nextRoundTimeoutRef.current = setTimeout(() => {
+                        setShowTrophy(false);
+                        initializeGame();
+                        nextRoundTimeoutRef.current = null;
+                    }, 3000);
+                } else {
+                    nextRoundTimeoutRef.current = setTimeout(() => {
+                        initializeGame();
+                        nextRoundTimeoutRef.current = null;
+                    }, 1000);
+                }
+                return currentScore; // Don't change score here, already incremented above
+            });
         }
         // Cleanup on unmount
         return () => {
@@ -81,7 +90,7 @@ export const useGameState = () => {
                 nextRoundTimeoutRef.current = null;
             }
         };
-    }, [correctlySelected, images, currentLetter, score, initializeGame]);
+    }, [correctlySelected, images, currentLetter, initializeGame]);
 
     // Initialize game on mount
     useEffect(() => {

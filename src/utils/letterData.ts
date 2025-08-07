@@ -160,6 +160,6 @@ export const IMAGES: ImageData[] = [
     { name: 'Zahnbürste', url: 'https://openmoji.org/data/color/svg/1FAA5.svg' }
 ];
 
-export const ALL_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ä', 'Ö', 'Ü', 'EU', 'EI', 'ST', 'SP', 'SCH', 'PF'];
+export const ALL_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ä', 'Ö', 'EU', 'EI', 'ST', 'SP', 'SCH', 'PF'];
 
-export const VOWELS = ['A', 'E', 'I', 'O', 'U', 'Ä', 'Ö', 'Ü'];
+export const VOWELS = ['A', 'E', 'I', 'O', 'U'];
