@@ -37,3 +37,6 @@ coverage/
 # package-lock.json
 # yarn.lock
 # pnpm-lock.yaml
+scripts/download_svgs.mjs
+scripts/download_svgs.ts
+scripts/update_image_paths.mjs

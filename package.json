@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "download:svgs": "node scripts/download_svgs.mjs"
   },
   "keywords": [
     "education",
