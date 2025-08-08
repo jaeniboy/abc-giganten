@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import NavigationBar from './components/NavigationBar';
 import GameBoard from './components/GameBoard';
-import Settings from './components/Settings';
+import Settings, { SettingsRef } from './components/Settings';
 
 type AppScreen = 'home' | 'game' | 'settings';
 
 const App: React.FC = () => {
   const [currentScreen, setCurrentScreen] = useState<AppScreen>('home');
+  const settingsRef = useRef<SettingsRef>(null);
+
+  // Handle navigation with validation when on settings screen
+  const handleNavigation = (target: AppScreen) => {
+    if (currentScreen === 'settings' && settingsRef.current) {
+      settingsRef.current.handleNavigationAttempt(() => setCurrentScreen(target));
+    } else {
+      setCurrentScreen(target);
+    }
+  };
 
   const renderScreen = () => {
     switch (currentScreen) {
@@ -20,7 +30,7 @@ const App: React.FC = () => {
                 Lerne spielerisch das Alphabet! Finde die Bilder, die mit dem gezeigten Buchstaben beginnen.
               </p>
               <button 
-                onClick={() => setCurrentScreen('game')}
+                onClick={() => handleNavigation('game')}
                 className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-full text-xl shadow-lg transition-all"
               >
                 🎮 Spiel starten
@@ -31,7 +41,12 @@ const App: React.FC = () => {
       case 'game':
         return <GameBoard />;
       case 'settings':
-        return <Settings onBack={() => setCurrentScreen('home')} />;
+        return <Settings 
+          ref={settingsRef}
+          onBack={() => handleNavigation('home')} 
+          onShowHome={() => handleNavigation('home')}
+          onShowGame={() => handleNavigation('game')}
+        />;
       default:
         return null;
     }
@@ -40,9 +55,9 @@ const App: React.FC = () => {
   return (
     <div className="app flex flex-col min-h-screen">
       <NavigationBar 
-        onShowHome={() => setCurrentScreen('home')}
-        onShowGame={() => setCurrentScreen('game')}
-        onShowSettings={() => setCurrentScreen('settings')}
+        onShowHome={() => handleNavigation('home')}
+        onShowGame={() => handleNavigation('game')}
+        onShowSettings={() => handleNavigation('settings')}
       />
       <div className="flex-1 flex flex-col">
         {renderScreen()}

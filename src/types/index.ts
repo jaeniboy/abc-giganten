@@ -1,6 +1,7 @@
 export interface ImageData {
     name: string;
     url: string;
+    letter: string;
     selected?: boolean;
     correct?: boolean;
 }

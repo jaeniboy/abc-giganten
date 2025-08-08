@@ -2,12 +2,14 @@ import { ImageData } from '../types';
 import { IMAGES } from './letterData';
 
 export const getRandomImages = (letter: string): ImageData[] => {
+    const letterLower = letter.toLowerCase();
+    
     const correctImages = IMAGES.filter(image => 
-        startsWithLetter(image.name, letter)
+        image.letter === letterLower
     );
     
     const incorrectImages = IMAGES.filter(image => 
-        !startsWithLetter(image.name, letter)
+        image.letter !== letterLower
     );
 
     // Ensure at least 1 correct image, but not more than available
@@ -28,34 +30,5 @@ export const getRandomImages = (letter: string): ImageData[] => {
 };
 
 export const isCorrectImage = (image: ImageData, letter: string): boolean => {
-    return startsWithLetter(image.name, letter);
-};
-
-const startsWithLetter = (word: string, letter: string): boolean => {
-    const wordLower = word.toLowerCase();
-    const letterLower = letter.toLowerCase();
-    
-    // Handle compound sounds and special characters
-    switch (letterLower) {
-        case 'eu':
-            return wordLower.startsWith('eu');
-        case 'ei':
-            return wordLower.startsWith('ei');
-        case 'st':
-            return wordLower.startsWith('st');
-        case 'sp':
-            return wordLower.startsWith('sp');
-        case 'sch':
-            return wordLower.startsWith('sch');
-        case 'pf':
-            return wordLower.startsWith('pf');
-        case 'ä':
-            return wordLower.startsWith('ä');
-        case 'ö':
-            return wordLower.startsWith('ö');
-        case 'ü':
-            return wordLower.startsWith('ü');
-        default:
-            return wordLower.startsWith(letterLower);
-    }
+    return image.letter === letter.toLowerCase();
 };

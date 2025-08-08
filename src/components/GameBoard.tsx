@@ -15,6 +15,12 @@ const GameBoard: React.FC = () => {
         resetGame
     } = useGameState();
 
+    // Helper function to capitalize only the first letter
+    const capitalizeFirstLetter = (str: string): string => {
+        if (!str) return '';
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    };
+
     if (showTrophy) {
         return (
             <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-yellow-300 to-yellow-500 p-4">
@@ -38,7 +44,7 @@ const GameBoard: React.FC = () => {
             {/* Letter Display */}
             <div className="text-center mb-6 flex gap-4 justify-center">
                 <div className="text-9xl font-bold mb-2 text-blue-800">
-                    {currentLetter?.toUpperCase()}
+                    {capitalizeFirstLetter(currentLetter || '')}
                 </div>
                 <div className="text-9xl font-bold text-blue-600">
                     {currentLetter?.toLowerCase()}
