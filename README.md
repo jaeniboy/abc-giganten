@@ -51,6 +51,18 @@ The project is organized into the following main directories:
    ```
 5. Open your browser and go to `http://localhost:3000` to view the application.
 
+## Deployment
+The application is configured for automatic deployment to GitHub Pages. 
+
+**Live Demo:** [https://jaeniboy.github.io/abc-giganten/](https://jaeniboy.github.io/abc-giganten/)
+
+To deploy:
+1. Push changes to the main branch
+2. GitHub Actions will automatically build and deploy the application
+3. The site will be available at the URL above within a few minutes
+
+For detailed deployment instructions, see [DEPLOYMENT.md](DEPLOYMENT.md).
+
 ## Contributing
 Contributions are welcome! Please feel free to submit a pull request or open an issue for any suggestions or improvements.
 
