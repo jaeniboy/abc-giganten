@@ -2,9 +2,6 @@ import React, { useState, useRef } from 'react';
 import NavigationBar from './components/NavigationBar';
 import GameBoard from './components/GameBoard';
 import Settings, { SettingsRef } from './components/Settings';
-import ReloadPrompt from './components/ReloadPrompt';
-import InstallPrompt from './components/InstallPrompt';
-import './styles/pwa.css';
 
 type AppScreen = 'home' | 'game' | 'settings';
 
@@ -65,8 +62,6 @@ const App: React.FC = () => {
       <div className="flex-1 flex flex-col">
         {renderScreen()}
       </div>
-      <ReloadPrompt />
-      <InstallPrompt />
     </div>
   );
 };
