@@ -4,6 +4,24 @@
 
 body {
     @apply bg-white text-gray-800 font-sans;
+    /* PWA specific: Prevent overscroll bouncing on iOS */
+    overscroll-behavior-y: contain;
+    /* Prevent pull-to-refresh on mobile */
+    overscroll-behavior: contain;
+}
+
+/* PWA: Remove default mobile browser behaviors */
+* {
+    /* Disable text selection on touch devices for native feel */
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Allow text selection for input elements */
+input[type="text"], textarea {
+    -webkit-touch-callout: default;
+    -webkit-user-select: text;
+    user-select: text;
 }
 
 h1, h2, h3, h4 {

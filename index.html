@@ -1,10 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABC Giganten</title>
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>ABC Giganten - Deutsch Alphabet Lernen</title>
+    <meta name="description" content="Interaktives Lernspiel für das deutsche Alphabet - perfekt für Vorschulkinder!">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#2563eb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="ABC Giganten">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- Disable browser features for native feel -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/pwa-192x192.png">
+    
+    <!-- Prevent zoom -->
+    <style>
+      /* Prevent zoom on input focus */
+      input[type="color"],
+      input[type="date"],
+      input[type="datetime"],
+      input[type="datetime-local"],
+      input[type="email"],
+      input[type="month"],
+      input[type="number"],
+      input[type="password"],
+      input[type="search"],
+      input[type="tel"],
+      input[type="text"],
+      input[type="time"],
+      input[type="url"],
+      input[type="week"],
+      select:focus,
+      textarea {
+        font-size: 16px;
+      }
+      
+      /* Disable double-tap zoom */
+      * {
+        touch-action: manipulation;
+      }
+    </style>
 </head>
 <body>
     <div id="root"></div>
